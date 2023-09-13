@@ -67,7 +67,9 @@ function Menu() {
     return (
         <main className="menu">
             <h2>Our Menu:</h2>
-            <Pizza name="BurgerKing" ingredient="Tamato,flour,cheese,panner" photoName="pizzaPic/p1.jpg" price={100} />
+            <div>
+                {pizzaData.map(pizza => <Pizza name={pizza.name} ingredients={pizza.ingredients} price={pizza.price} photoName={pizza.photoName}/>)}
+            </div>
         </main>
     )
 }
@@ -90,10 +92,10 @@ function Footer() {
 function Pizza(props) {
     console.log(props);
     return (
-        <div>
+        <div className="pizza">
             <img src={props.photoName} alt={props.name} />
             <h1>Name: {props.name}</h1>
-            <h2>ingredient: {props.ingredient}</h2>
+            <h2>ingredients: {props.ingredients}</h2>
             <h3>price: {props.price + 3}</h3>
         </div>
     )
