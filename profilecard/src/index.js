@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDom from "react-dom/client";
-
+import "./index.css";
 function App(){
     return(
         <div className="card">
@@ -14,36 +14,31 @@ function App(){
 }
 
 function Header(props){
-    console.log(props);
-    return(
-        <div>
-            <img src={props.photoName} alt={props.name}/>
-        </div>
-    );
+    return <img className="avatar" src={props.photoName} alt={props.name}/>
 }
 
 function SkillList(){
     return(
-        <div>
-            <Skill skillName="PHP" />
-            <Skill skillName="CSS" />
-            <Skill skillName="HTML" />
-            <Skill skillName="JAVA" />
-            <Skill skillName="C++" />
+        <div className="skill-list">
+            <Skill skillName="PHP" emoji="💪" color="blue" />
+            <Skill skillName="CSS" emoji="💪" color="orange" />
+            <Skill skillName="HTML" emoji="💪" color="yellow" />
+            <Skill skillName="JAVA" emoji="👶" color="orangered" />
         </div>
         
     );
 }
 function Skill(props){
     return(
-        <div>
-            <h2>{props.skillName}</h2>
+        <div className="skill" style={{ backgroundColor: props.color }}>
+            <span>{props.skillName}</span>
+            <span>{props.emoji}</span>
         </div>
     )
 }
 
 function About(){
-    return <h1>Meta Platforms, Inc., doing business as Meta, and formerly named Facebook, Inc., and TheFacebook, Inc., is an American multinational technology conglomerate based in Menlo Park, California</h1>
+    return <p>Meta Platforms, Inc., doing business as Meta,  <br />and formerly named Facebook, Inc.,and TheFacebook, Inc., <br />is an American multinational technology conglomerate <br />based in Menlo Park, California</p>
 }
 
 
