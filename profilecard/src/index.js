@@ -1,17 +1,56 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDom from "react-dom/client";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+function App(){
+    return(
+        <div className="card">
+            <Header photoName="pics/taj.jpg" name="photo"/>
+            <div className="data">
+                <About />
+                <SkillList />
+            </div>
+        </div>
+    );
+}
+
+function Header(props){
+    console.log(props);
+    return(
+        <div>
+            <img src={props.photoName} alt={props.name}/>
+        </div>
+    );
+}
+
+function SkillList(){
+    return(
+        <div>
+            <Skill skillName="PHP" />
+            <Skill skillName="CSS" />
+            <Skill skillName="HTML" />
+            <Skill skillName="JAVA" />
+            <Skill skillName="C++" />
+        </div>
+        
+    );
+}
+function Skill(props){
+    return(
+        <div>
+            <h2>{props.skillName}</h2>
+        </div>
+    )
+}
+
+function About(){
+    return <h1>Meta Platforms, Inc., doing business as Meta, and formerly named Facebook, Inc., and TheFacebook, Inc., is an American multinational technology conglomerate based in Menlo Park, California</h1>
+}
+
+
+const root = ReactDom.createRoot(document.getElementById("root"));
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+        <App/>
+    </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
