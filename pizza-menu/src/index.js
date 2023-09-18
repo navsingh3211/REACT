@@ -127,13 +127,18 @@ function Footer() {
 
 function Pizza(props) {
     console.log(props);
+    
+    // if (props.pizzaObj.soldOut) return null;
+
     return (
-        <div className="pizza">
+        <li className={`pizza ${props.pizzaObj.soldOut ? "sold-out" : ""}`}>
             <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
-            <h1>Name: {props.pizzaObj.name}</h1>
-            <h2>ingredients: {props.pizzaObj.ingredients}</h2>
-            <span>price: {props.pizzaObj.price + 3}</span>
-        </div>
+            <div>
+                <h3>Name: {props.pizzaObj.name}</h3>
+                <p>ingredients: {props.pizzaObj.ingredients}</p>
+                <span>price: {props.pizzaObj.soldOut ? 'SOLD OUT' : props.pizzaObj.price}</span>
+            </div>
+        </li> 
     )
 }
 
