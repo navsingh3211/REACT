@@ -8,7 +8,6 @@ import { useState } from "react";
 // ];
 
 export default function App() {
-
     //below technique is called lifting-up technique
     //(if you are not able to take data in siblings then in that case we will lift the data to nearest parent component)
 
@@ -26,11 +25,21 @@ export default function App() {
         setItems((items) => items.map((item) => item.id === id ? { ...item, packed: !item.packed } : item));
     }
 
+    function handleListClear(){
+        const conformed = window.confirm("Are you sure you want to delete all items?")
+        if (conformed) setItems([]);
+    }
+
     return (
         <div className="App">
             <Logo />
             <Form onAddItems={handleAddItems} />
-            <PackingList items={items} onDeleteItem={handleDeleteItem} onToggle={handleToggleItem} />
+            <PackingList 
+                items={items} 
+                onDeleteItem={handleDeleteItem} 
+                onToggle={handleToggleItem} 
+                onListClear={handleListClear} 
+            />
             <Stats items={items} />
         </div>
     );
@@ -48,7 +57,6 @@ function Form({ onAddItems }) {
         e.preventDefault();
         if (!description) return;
         const newItem = { description, quantity, packed: false, id: Date.now() };
-        // console.log(newItem);
         onAddItems(newItem);
 
         setDescription("");
@@ -71,7 +79,7 @@ function Form({ onAddItems }) {
     );
 }
 
-function PackingList({ items, onDeleteItem, onToggle }) {
+function PackingList({ items, onDeleteItem, onToggle, onListClear }) {
     const [sortBy, setSortBy] = useState("input");
 
     let sortedItems;
@@ -90,7 +98,6 @@ function PackingList({ items, onDeleteItem, onToggle }) {
     if (sortBy === "packed") {
         sortedItems = items.slice().sort((a, b) => Number(a.packed) - Number(b.packed));
     }
-
 
     return (
         <div className="list">
@@ -111,6 +118,7 @@ function PackingList({ items, onDeleteItem, onToggle }) {
                     <option value="description">Sort by description</option>
                     <option value="packed">Sort by packed status</option>
                 </select>
+                <button onClick={() => onListClear()}>Clear List</button>
             </div>
         </div>
     );
